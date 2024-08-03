@@ -1,0 +1,11 @@
+http:
+  routers:
+    forward:
+      rule: Host(`service.<redacted>.com`) #&& PathPrefix(`/share/`)
+      service: forward
+
+  services:
+    forward:
+      loadBalancer:
+        servers:
+          - url: https://google.com

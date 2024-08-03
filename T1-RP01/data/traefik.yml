@@ -1,0 +1,33 @@
+entrypoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entrypoint:
+          to: https
+          scheme: https
+  https:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    watch: true
+  file:
+    filename: "./config.yml"
+    watch: true
+
+api:
+  dashboard: true
+  insecure: true
+
+certificatesResolvers:
+  myresolver:
+    acme:
+      email: email@provider.com
+      storage: /data/acme.json
+
+
+      httpChallenge:
+        entryPoint: http
