@@ -2,6 +2,8 @@ http:
   routers:
     forward:
       rule: Host(`service.<redacted>.com`) #&& PathPrefix(`/share/`)
+      entryPoints:
+        - https
       service: forward
 
   services:
